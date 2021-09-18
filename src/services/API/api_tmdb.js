@@ -8,6 +8,9 @@ async function fetchWithErrorHandling(url = '', config = {}) {
 }
 export function getTrendingMovie() {
   return fetchWithErrorHandling(
-    `${BASE_URL}//trending/movie/day?api_key=${API_KEY}`,
+    `${BASE_URL}trending/movie/day?api_key=${API_KEY}`,
   );
+}
+export function getMovieById(id) {
+  return fetchWithErrorHandling(`${BASE_URL}movie/${id}?api_key=${API_KEY}`);
 }
