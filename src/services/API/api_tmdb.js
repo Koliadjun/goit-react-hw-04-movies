@@ -11,6 +11,21 @@ export function getTrendingMovie() {
     `${BASE_URL}trending/movie/day?api_key=${API_KEY}`,
   );
 }
+export function searchMovieByQuery(query) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`,
+  );
+}
 export function getMovieById(id) {
   return fetchWithErrorHandling(`${BASE_URL}movie/${id}?api_key=${API_KEY}`);
+}
+export function getMovieReviews(id) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`,
+  );
+}
+export function getMovieCast(id) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`,
+  );
 }
