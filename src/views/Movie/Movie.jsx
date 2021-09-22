@@ -18,7 +18,7 @@ function Movie() {
   const onClickHandler = () => {
     history.push(location?.state?.from ?? '/movies');
   };
-  console.log(location?.state);
+
   return (
     <>
       <button type="button" onClick={onClickHandler}>
