@@ -1,34 +1,47 @@
 import './App.css';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router';
-import HomePage from './views/HomePage/HomePage';
-import Movies from './views/Movies/Movies';
 import Navigation from './components/Navigation/Navigation';
-import NotFondPage from './views/NotFoundPage/NotFondPage';
-import Movie from './views/Movie/Movie';
 
-const App = () => {
+const HomePage = lazy(() =>
+  import('./views/HomePage/HomePage.jsx' /*webpackChunkName: "HomeView"*/),
+);
+const Movies = lazy(() =>
+  import('./views/Movies/Movies.jsx' /*webpackChunkName: "Movies"*/),
+);
+const NotFondPage = lazy(() =>
+  import(
+    './views/NotFoundPage/NotFondPage.jsx' /*webpackChunkName: "NotFoundPage"*/
+  ),
+);
+const Movie = lazy(() =>
+  import('./views/Movie/Movie.jsx' /*webpackChunkName: "Movie"*/),
+);
+
+function App() {
   return (
     <>
       <Navigation />
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route exact path="/movies">
-          <Movies />
-        </Route>
-        <Route path="/movies/:movieId">
-          <Movie />
-        </Route>
-        <Route path="/movies/:movieId/cast"></Route>
-        <Route path="/movies/:movieId/reviews"></Route>
-        <Route>
-          <NotFondPage />
-        </Route>
-      </Switch>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/movies">
+            <Movies />
+          </Route>
+          <Route path="/movies/:movieId">
+            <Movie />
+          </Route>
+          <Route path="/movies/:movieId/cast"></Route>
+          <Route path="/movies/:movieId/reviews"></Route>
+          <Route>
+            <NotFondPage />
+          </Route>
+        </Switch>
+      </Suspense>
     </>
   );
-};
+}
 
 export default App;
