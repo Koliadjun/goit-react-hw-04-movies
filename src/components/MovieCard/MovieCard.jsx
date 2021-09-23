@@ -16,7 +16,11 @@ function MovieCard() {
           <div>
             <img
               width="100"
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                  : 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/9556d16312333.5691dd2255721.jpg'
+              }
               alt="Poster_image"
             />
           </div>

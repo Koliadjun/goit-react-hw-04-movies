@@ -11,8 +11,11 @@ function Cast({ id }) {
 
   return (
     <ul>
-      {actors &&
-        actors.map(actor => <ActorCard key={actor.id} actor={actor} />)}
+      {actors.length === 0 ? (
+        <h3>No information</h3>
+      ) : (
+        actors.map(actor => <ActorCard key={actor.id} actor={actor} />)
+      )}
     </ul>
   );
 }
